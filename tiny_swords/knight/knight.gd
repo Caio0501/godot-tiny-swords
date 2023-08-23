@@ -38,11 +38,11 @@ func get_direction() -> Vector2:
 func animate() -> void:
 	if velocity.x > 0:
 		sprite.flip_h = false
-		attack_area_collision.position.x = 30
+		attack_area_collision.position.x = 60
 		
 	if velocity.x < 0:
 		sprite.flip_h = true
-		attack_area_collision.position.x = -30
+		attack_area_collision.position.x = -60
 	
 	
 	if velocity != Vector2.ZERO:
