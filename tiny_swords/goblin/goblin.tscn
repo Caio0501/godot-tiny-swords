@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://rft2fpvjx07g"]
+[gd_scene load_steps=14 format=3 uid="uid://rft2fpvjx07g"]
 
 [ext_resource type="Texture2D" uid="uid://do0ujiwglsd63" path="res://assets/Factions/Goblins/Torch.png" id="1_fpisc"]
+[ext_resource type="Script" path="res://tiny_swords/goblin/goblin.gd" id="1_mm7vf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2wrp"]
 size = Vector2(48, 18)
@@ -256,13 +257,16 @@ _data = {
 }
 
 [node name="goblin" type="CharacterBody2D"]
+script = ExtResource("1_mm7vf")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+light_mask = 2
 position = Vector2(0, 31)
 shape = SubResource("RectangleShape2D_c2wrp")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, 31)
@@ -285,3 +289,6 @@ root_node = NodePath("../Animation")
 libraries = {
 "": SubResource("AnimationLibrary_5akw1")
 }
+
+[connection signal="body_entered" from="DetectionArea" to="." method="on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="on_detection_area_body_exited"]

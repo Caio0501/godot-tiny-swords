@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="tiny-swords"
-run/main_scene="res://tiny_swords/knight/knight.tscn"
+run/main_scene="res://tiny_swords/management/level.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
