@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var attack_area_collision: CollisionShape2D = get_node("attackArea/Collision")
 
 @export var move_speed: float = 256.0
-@export var health: int = 2
+@export var health: int = 10
 @export var damage: int = 1
 
 var can_attack: bool = true

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://6wmxt40ynpco"]
+
+[ext_resource type="Script" path="res://tiny_swords/goblin/EnemyAttackArea.gd" id="1_27uhu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnfcr"]
+radius = 70.0
+
+[node name="EnemyAttackArea" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_27uhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cnfcr")
+
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="timeout" from="LifeTime" to="." method="on_life_time_timeout"]

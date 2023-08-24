@@ -373,5 +373,8 @@ libraries = {
 "": SubResource("AnimationLibrary_1nd73")
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
 [connection signal="animation_finished" from="Animation" to="." method="on_animation_finished"]
 [connection signal="body_entered" from="attackArea" to="." method="on_attack_area_body_entered"]
