@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
+const AUDIO_TEMPLATE: PackedScene = preload("res://tiny_swords/management/audio_template.tscn")
+
 @onready var animation: AnimationPlayer =  get_node("Animation")
 @onready var aux_animation_player: AnimationPlayer = get_node("AuxAnimationPlayer")
 @onready var sprite: Sprite2D =  get_node("Sprite")
+@onready var dust: GPUParticles2D = get_node("Dust")
 
 @onready var attack_area_collision: CollisionShape2D = get_node("attackArea/Collision")
 
@@ -13,7 +16,14 @@ extends CharacterBody2D
 var can_attack: bool = true
 var can_die: bool = false
 
-func _physics_process(delta:float) -> void:
+func _ready()-> void:
+	if(transition_screen.player_health != 0):
+		health = transition_screen.player_health
+		return 
+	
+	transition_screen.player_health = health
+
+func _physics_process(_delta: float) -> void:
 	if (
 		can_attack == false or 
 		can_die
@@ -46,9 +56,11 @@ func animate() -> void:
 	
 	
 	if velocity != Vector2.ZERO:
+		dust.emitting = true
 		animation.play("run")
 		return 
 	
+	dust.emitting = false
 	animation.play("idle")
 
 
@@ -57,13 +69,20 @@ func attack_hancler() -> void:
 		can_attack = false
 		animation.play("attack")
 
+func spawn_sfx(sfx_path: String) -> void:
+	var sfx = AUDIO_TEMPLATE.instantiate()
+	sfx.sfx_to_play = sfx_path
+	add_child(sfx)
+	
 
 func on_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"attack":
 			can_attack = true
 		"death":
-			get_tree().reload_current_scene()
+			transition_screen.fade_in()
+			transition_screen.player_health = 0
+			transition_screen.player_score = 0
 			
 
 func on_attack_area_body_entered(body):
@@ -72,7 +91,9 @@ func on_attack_area_body_entered(body):
 
 func update_health(value: int) -> void:
 	health -= value
+	transition_screen.player_health = health
 	
+	get_tree().call_group("level", "update_health", health)
 	if (health <= 0):
 		can_die = true
 		animation.play("death")

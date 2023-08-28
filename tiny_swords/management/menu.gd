@@ -9,7 +9,7 @@ func _ready():
 func on_button_pressed(button_name: String) -> void:
 	match button_name:
 		"NewGame":
-			transition_screen.scene_path= "res://tiny_swords/management/level.tscn"
+			transition_screen.scene_path= "res://tiny_swords/management/level/level_1.tscn"
 			transition_screen.fade_in()
 		
 		"Quit":

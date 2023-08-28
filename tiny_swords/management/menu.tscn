@@ -1,10 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://u662qk3eurmt"]
+[gd_scene load_steps=42 format=3 uid="uid://u662qk3eurmt"]
 
 [ext_resource type="Script" path="res://tiny_swords/management/menu.gd" id="1_mgxlh"]
 [ext_resource type="FontFile" uid="uid://drbvu4sjmvs2h" path="res://assets/kurlan.ttf" id="2_ceash"]
 [ext_resource type="Script" path="res://tiny_swords/management/Terrain.gd" id="3_8g2bd"]
 [ext_resource type="Texture2D" uid="uid://cgdwcppypiiwj" path="res://assets/Terrain/Water/Water.png" id="4_8m1k6"]
 [ext_resource type="Texture2D" uid="uid://ckkjn0t6njp4t" path="res://assets/Terrain/Ground/Grass_Flat.png" id="5_qumo3"]
+[ext_resource type="Texture2D" uid="uid://qpxbqjxcpuj6" path="res://assets/Terrain/Decorations/Bush_01.png" id="6_y7eye"]
+[ext_resource type="Texture2D" uid="uid://bvhi6h8ysnlod" path="res://assets/Terrain/Decorations/Bush_02.png" id="7_ana6l"]
+[ext_resource type="Texture2D" uid="uid://xtig23bxm8wt" path="res://assets/Terrain/Decorations/Bush_03.png" id="8_lia14"]
+[ext_resource type="Texture2D" uid="uid://b7cw3gk1ymcwo" path="res://assets/Terrain/Decorations/Mushroom_01.png" id="9_5v03s"]
+[ext_resource type="Texture2D" uid="uid://dli8lkxepd5pf" path="res://assets/Terrain/Decorations/Mushroom_02.png" id="10_n5omb"]
+[ext_resource type="Texture2D" uid="uid://dqcbalkkj3d1e" path="res://assets/Terrain/Decorations/Mushroom_03.png" id="11_ujw35"]
+[ext_resource type="PackedScene" uid="uid://dh3ue06twdk5u" path="res://tiny_swords/management/tree.tscn" id="12_f54b1"]
+[ext_resource type="Texture2D" uid="uid://do0ujiwglsd63" path="res://assets/Factions/Goblins/Torch.png" id="13_ha6q6"]
+[ext_resource type="Texture2D" uid="uid://dqf8hv7odq0ll" path="res://assets/Factions/Knights/Warrior.png" id="14_a65lg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxik6"]
 font = ExtResource("2_ceash")
@@ -136,6 +145,152 @@ terrain_set_0/terrain_0/name = "Auto Tile"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_2ov08")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m8281"]
+texture = ExtResource("6_y7eye")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ofhhr"]
+texture = ExtResource("7_ana6l")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bmvul"]
+texture = ExtResource("8_lia14")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ggbol"]
+texture = ExtResource("9_5v03s")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wapo"]
+texture = ExtResource("10_n5omb")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0625"]
+texture = ExtResource("11_ujw35")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_t3ta4"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_m8281")
+sources/1 = SubResource("TileSetAtlasSource_ofhhr")
+sources/2 = SubResource("TileSetAtlasSource_bmvul")
+sources/3 = SubResource("TileSetAtlasSource_ggbol")
+sources/4 = SubResource("TileSetAtlasSource_0wapo")
+sources/5 = SubResource("TileSetAtlasSource_x0625")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyoxh"]
+atlas = ExtResource("13_ha6q6")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8qje"]
+atlas = ExtResource("13_ha6q6")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g8j0"]
+atlas = ExtResource("13_ha6q6")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rshf"]
+atlas = ExtResource("13_ha6q6")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk0fp"]
+atlas = ExtResource("13_ha6q6")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyyux"]
+atlas = ExtResource("13_ha6q6")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8te1"]
+atlas = ExtResource("13_ha6q6")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k4444"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyoxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8qje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g8j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rshf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk0fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyyux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8te1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q88rk"]
+atlas = ExtResource("14_a65lg")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fboe4"]
+atlas = ExtResource("14_a65lg")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_squfi"]
+atlas = ExtResource("14_a65lg")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci4a5"]
+atlas = ExtResource("14_a65lg")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u76oa"]
+atlas = ExtResource("14_a65lg")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3bbr"]
+atlas = ExtResource("14_a65lg")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7sof0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q88rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fboe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_squfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci4a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u76oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3bbr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -200,3 +355,25 @@ tile_set = SubResource("TileSet_xvpcg")
 cell_quadrant_size = 64
 format = 2
 layer_0/tile_data = PackedInt32Array(262147, 0, 0, 262148, 65536, 0, 262149, 65536, 1, 262150, 65536, 1, 327686, 65536, 1, 327687, 65536, 1, 393223, 65536, 1, 393222, 65536, 1, 393221, 65536, 1, 393220, 65536, 1, 327684, 65536, 1, 393219, 65536, 1, 327683, 65536, 1, 327685, 65536, 1, 458755, 0, 2, 458756, 65536, 2, 458757, 65536, 2, 262151, 65536, 1, 262152, 65536, 1, 262153, 65536, 1, 196617, 131072, 0, 196616, 65536, 0, 196615, 65536, 0, 196614, 65536, 0, 196613, 0, 0, 327688, 65536, 1, 393224, 65536, 1, 393225, 65536, 1, 458761, 65536, 1, 458762, 65536, 2, 458760, 65536, 1, 327689, 65536, 1, 393226, 65536, 1, 327690, 65536, 1, 327691, 65536, 1, 327692, 131072, 0, 393227, 65536, 1, 458763, 131072, 2, 458759, 65536, 1, 393218, 0, 2, 327682, 0, 0, 524295, 0, 2, 524296, 65536, 2, 524297, 131072, 2, 393228, 131072, 2, 262154, 65536, 0, 262155, 131072, 0, 458758, 65536, 2)
+
+[node name="Decoration" type="TileMap" parent="Terrain"]
+tile_set = SubResource("TileSet_t3ta4")
+format = 2
+layer_0/tile_data = PackedInt32Array(327686, 0, 0, 458758, 0, 0, 393226, 0, 0, 458760, 2, 0, 393219, 2, 0, 262150, 2, 0, 393225, 3, 0, 393220, 3, 0, 262153, 5, 0, 458763, 5, 0, 262149, 5, 0, 393223, 1, 0, 327689, 1, 0, 327691, 1, 0, 262147, 1, 0)
+
+[node name="Tree" parent="Terrain" instance=ExtResource("12_f54b1")]
+position = Vector2(309, 278)
+
+[node name="Tree2" parent="Terrain" instance=ExtResource("12_f54b1")]
+position = Vector2(606, 394)
+
+[node name="gobin" type="AnimatedSprite2D" parent="."]
+position = Vector2(363, 410)
+sprite_frames = SubResource("SpriteFrames_k4444")
+autoplay = "default"
+
+[node name="knight" type="AnimatedSprite2D" parent="."]
+position = Vector2(550, 293)
+sprite_frames = SubResource("SpriteFrames_7sof0")
+autoplay = "default"
+flip_h = true

@@ -1,21 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://xwysglpgatch"]
+[gd_scene load_steps=10 format=3 uid="uid://xwysglpgatch"]
 
 [ext_resource type="Script" path="res://tiny_swords/management/transition_screen.gd" id="1_7oik2"]
-
-[sub_resource type="Animation" id="Animation_6ufv3"]
-resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
+[ext_resource type="FontFile" uid="uid://drbvu4sjmvs2h" path="res://assets/kurlan.ttf" id="2_52han"]
+[ext_resource type="AudioStream" uid="uid://hkdg28223my0" path="res://assets/bgm_e_sfx/music/Goblins_Dance_(Battle).wav" id="3_qoise"]
 
 [sub_resource type="Animation" id="Animation_d6edl"]
 length = 0.001
@@ -30,6 +17,33 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpecialMessage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6ufv3"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_sirr3"]
@@ -47,14 +61,47 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_bx7c2"]
+resource_name = "special_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpecialMessage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4my4h"]
 _data = {
 "RESET": SubResource("Animation_d6edl"),
 "fade_in": SubResource("Animation_6ufv3"),
-"fade_out": SubResource("Animation_sirr3")
+"fade_out": SubResource("Animation_sirr3"),
+"special_fade_in": SubResource("Animation_bx7c2")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_ogfj3"]
+font = ExtResource("2_52han")
+font_size = 64
+
 [node name="TransitionScreen" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_7oik2")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -70,5 +117,28 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_4my4h")
 }
+
+[node name="SpecialMessage" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -35.5
+offset_right = 223.0
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Wave Cleared !!!"
+label_settings = SubResource("LabelSettings_ogfj3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qoise")
+autoplay = true
 
 [connection signal="animation_finished" from="Animation" to="." method="on_animation_finished"]
